@@ -39,8 +39,9 @@ public class BuildingPlacement : MonoBehaviour {
         {
             if (Input.GetMouseButtonDown(0))
             {
+                Vector3 rayVector = p - transform.position;
                 RaycastHit hit = new RaycastHit();
-                Ray ray = new Ray(new Vector3(p.x, 10, p.z), Vector3.down);
+                Ray ray = new Ray(new Vector3(p.x, p.y, p.z), rayVector);
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, buildingsMask))
                 {
                     if (placeableBuildingOld != null)
