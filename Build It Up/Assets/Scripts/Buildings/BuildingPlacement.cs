@@ -4,7 +4,6 @@ using System.Collections;
 public class BuildingPlacement : MonoBehaviour {
 
     private PlaceableBuildings placeableBuilding;
-    private PlaceableBuildings placeableBuildingOld;
     private Transform currentBuilding;
     private bool hasPlaced;
 
@@ -25,7 +24,7 @@ public class BuildingPlacement : MonoBehaviour {
 
         if (currentBuilding != null && !hasPlaced)
         {
-            currentBuilding.position = new Vector3(Mathf.Round(p.x / 5) * 5, 0, Mathf.Round(p.z / 5) * 5);
+            currentBuilding.position = new Vector3(p.x, 0, p.z);
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -39,25 +38,11 @@ public class BuildingPlacement : MonoBehaviour {
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Vector3 rayVector = p - transform.position;
                 RaycastHit hit = new RaycastHit();
-                Ray ray = new Ray(new Vector3(p.x, p.y, p.z), rayVector);
+                Ray ray = new Ray(new Vector3(p.x, 500, p.z), Vector3.down);
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, buildingsMask))
                 {
-                    if (placeableBuildingOld != null)
-                    {
-                        placeableBuildingOld = hit.collider.gameObject.GetComponent<PlaceableBuildings>();
-                    }
-                    hit.collider.gameObject.GetComponent<PlaceableBuildings>().SetSelected(true);
-                    placeableBuildingOld = hit.collider.gameObject.GetComponent<PlaceableBuildings>();
-                }
-
-                else
-                {
-                    if (placeableBuildingOld != null)
-                    {
-                        placeableBuildingOld = hit.collider.gameObject.GetComponent<PlaceableBuildings>();
-                    }
+                    Debug.Log(hit.collider.name);
                 }
             }
         }
