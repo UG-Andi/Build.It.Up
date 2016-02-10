@@ -5,23 +5,33 @@ using UnityEngine.UI;
 public class IngameManager : MonoBehaviour {
 
     //Referenzen
-    private Text moneyTxtM;
-    private TaxManager taxManager;
+    private Text moneyTxt;
+    private Text incomeTxt;
 
     //Ints
-    private int tax;
-    public int Tax { get { return tax; } set { tax = value; } }
-    private int money;
-    public int Money { get { return money; } set { money = value; } }
+    public int money;
+    public int income;
 
-        void Start()
+    void Start()
+    {
+        moneyTxt = GameObject.FindGameObjectWithTag("Ingame_Money").GetComponent<Text>();
+        incomeTxt = GameObject.FindGameObjectWithTag("Ingame_Income").GetComponent<Text>();
+    }
+
+    void Update()
+    {
+        moneyTxt.text = "Money: $ " + money;
+
+        if (income > 0)
         {
-            moneyTxtM = GameObject.FindGameObjectWithTag("Ingame_Money").GetComponentInChildren<Image>().GetComponentInChildren<Text>();
-            taxManager = GameObject.FindGameObjectWithTag("Manager").GetComponentInChildren<TaxManager>();
+            incomeTxt.color = Color.green;
+            incomeTxt.text = "+" + income;
         }
 
-        void Update()
+        if (income <= 0)
         {
-            moneyTxtM.text = "Money: " + Money;
+            incomeTxt.color = Color.red;
+            incomeTxt.text =  ""+income;
         }
+    }
 }
