@@ -23,7 +23,7 @@ public class BuildingPlacement : MonoBehaviour {
         m = new Vector3(m.x, m.y, transform.position.y);
         Vector3 p = GetComponent<Camera>().ScreenToWorldPoint(m);
 
-        if (currentBuilding != null && hasPlaced == false)
+        if (currentBuilding != null && !hasPlaced)
         {
             currentBuilding.position = new Vector3(Mathf.Round(p.x / 5) * 5, 0, Mathf.Round(p.z / 5) * 5);
 
@@ -46,7 +46,7 @@ public class BuildingPlacement : MonoBehaviour {
                 {
                     if (placeableBuildingOld != null)
                     {
-                        placeableBuildingOld.SetSelected(false);
+                        placeableBuildingOld = hit.collider.gameObject.GetComponent<PlaceableBuildings>();
                     }
                     hit.collider.gameObject.GetComponent<PlaceableBuildings>().SetSelected(true);
                     placeableBuildingOld = hit.collider.gameObject.GetComponent<PlaceableBuildings>();
@@ -56,7 +56,7 @@ public class BuildingPlacement : MonoBehaviour {
                 {
                     if (placeableBuildingOld != null)
                     {
-                    placeableBuildingOld.SetSelected(false);
+                        placeableBuildingOld = hit.collider.gameObject.GetComponent<PlaceableBuildings>();
                     }
                 }
             }
