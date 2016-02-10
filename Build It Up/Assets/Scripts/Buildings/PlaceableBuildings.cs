@@ -28,7 +28,6 @@ public class PlaceableBuildings : MonoBehaviour {
         }
     }
 
-
     void OnTriggerEnter(Collider c)
     {
         if (c.tag == "Building")
