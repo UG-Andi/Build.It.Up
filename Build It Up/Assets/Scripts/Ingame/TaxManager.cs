@@ -53,7 +53,6 @@ public class TaxManager : MonoBehaviour {
         if (newHousesTier1 != 0)
         {
             housesTier1 += newHousesTier1;
-
             //Total Tax
             housesTier1TotalTaxes = houseTier1Tax * housesTier1;
         }
@@ -62,10 +61,11 @@ public class TaxManager : MonoBehaviour {
         if (newTradeTier1 != 0)
         {
             tradeTier1 += newTradeTier1;
-
             //Total Tax
             tradeTier1TotalTaxes = tradeTier1Tax * tradeTier1;
         }
+
+
 
 
         // FINAL calculations

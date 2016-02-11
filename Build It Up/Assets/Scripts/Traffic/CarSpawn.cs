@@ -9,12 +9,15 @@ public class CarSpawn : MonoBehaviour {
     //Floats
     public float timer;
 
+    //Ints
+    public int rotation;
+
     void Update()
     {
         if (timer <= 0)
         {
-            Instantiate(car, transform.position, Quaternion.Euler(-90,-90,0));
-            timer = Random.Range(5, 15);
+            Instantiate(car, transform.position, Quaternion.Euler(-90,rotation,0));
+            timer = Random.Range(4, 10);
         }
 
         if (timer > 0)
