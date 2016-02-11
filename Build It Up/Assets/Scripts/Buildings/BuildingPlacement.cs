@@ -10,13 +10,6 @@ public class BuildingPlacement : MonoBehaviour {
 
     public LayerMask buildingsMask;
 
-	// Use this for initialization
-	void Start ()
-    {
-	
-	}
-	
-	// Update is called once per frame
 	void Update ()
     {
         Vector3 m = Input.mousePosition;
@@ -25,13 +18,14 @@ public class BuildingPlacement : MonoBehaviour {
 
         if (currentBuilding != null && !hasPlaced)
         {
-            currentBuilding.position = new Vector3(Mathf.Round(p.x / 5) * 5, 0, Mathf.Round(p.z / 5) * 5);
+            currentBuilding.position = new Vector3(Mathf.Round(p.x / 1) * 1, 0, Mathf.Round(p.z / 0.4f) * 0.4f);
 
             if (Input.GetMouseButtonDown(0))
             {
                 if (IsLegalPosition())
                 {
                     hasPlaced = true;
+                    placeableBuilding.isPlaced = true;
                 }
             }
         }
