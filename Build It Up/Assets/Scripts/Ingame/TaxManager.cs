@@ -14,10 +14,17 @@ public class TaxManager : MonoBehaviour {
     //Ints
     public int totalTaxes;
 
+    [Header("Tier 1 Houses")]
     public int houseTier1Tax;           //HousesTier1
     public int newHousesTier1;
     private int housesTier1TotalTaxes;
     private int housesTier1;
+
+    [Header("Tier 1 Trades")]
+    public int tradeTier1Tax;
+    public int newTradeTier1;
+    private int tradeTier1TotalTaxes;
+    private int tradeTier1;
 
     void Start()
     {
@@ -42,28 +49,33 @@ public class TaxManager : MonoBehaviour {
 
     void UpdateHouses()
     {
-
+                                                                     //House_Tier1
         if (newHousesTier1 != 0)
         {
             housesTier1 += newHousesTier1;
 
-            //Calculates Taxes
-            housesTier1TotalTaxes = housesTier1 * houseTier1Tax;
-
-
-            totalTaxes = housesTier1TotalTaxes;
-
-
-            ingameManager.money += totalTaxes;
-            ingameManager.income = totalTaxes;
-
-            //Resets Taxes
-            newHousesTier1 = 0;
+            //Total Tax
+            housesTier1TotalTaxes = houseTier1Tax * housesTier1;
         }
-        else
+
+                                                                    //Trade_Tier1
+        if (newTradeTier1 != 0)
         {
-            ingameManager.money += totalTaxes;
-            ingameManager.income = totalTaxes;
+            tradeTier1 += newTradeTier1;
+
+            //Total Tax
+            tradeTier1TotalTaxes = tradeTier1Tax * tradeTier1;
         }
+
+
+        // FINAL calculations
+        totalTaxes = housesTier1TotalTaxes + tradeTier1TotalTaxes;
+
+        ingameManager.money += totalTaxes;
+        ingameManager.income = totalTaxes;
+
+        //Resets Taxes
+        newHousesTier1 = 0;
+        newTradeTier1 = 0;
     }
 }

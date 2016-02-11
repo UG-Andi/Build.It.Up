@@ -8,16 +8,40 @@ public class PlaceableBuildings : MonoBehaviour {
     public List<Collider> colliders = new List<Collider>();
     private bool isSelected;
 
+
+    public bool isPlaced;
+    private BasicBuilding basicBuilding;
+    private TradeHouseScript tradeHouseScript;
+
+
 	// Use this for initialization
 	void Start ()
     {
-	
+        basicBuilding = GetComponent<BasicBuilding>();
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-	
+        if (isPlaced)
+        {
+            if (basicBuilding.houseType == BasicBuilding.TypeOfHouse.Factory)                   //Wenn erstellt Debug.LogError durch Code ersetzen!
+            {
+                Debug.LogError("No Factory Script found!");
+            }
+
+            if (basicBuilding.houseType == BasicBuilding.TypeOfHouse.Trade)
+            {
+                tradeHouseScript = GetComponent<TradeHouseScript>();
+                tradeHouseScript.isBuilt = true;
+            }
+
+            if (basicBuilding.houseType == BasicBuilding.TypeOfHouse.House)
+            {
+                Debug.LogError("No House Script found!");
+            }
+
+        }
 	}
 
     void OnGUI()
