@@ -6,7 +6,14 @@ public class CameraMovement : MonoBehaviour {
     public float horizontalSpeed;
     public float verticalSpeed;
     public float cameraHight;
+    GameObject selectButtons;
 	
+    void Start ()
+    {
+        selectButtons = GameObject.Find("Auswähl-Buttons");
+        selectButtons.SetActive(true);
+    }
+
 	// Update is called once per frame
 	void Update ()
     {

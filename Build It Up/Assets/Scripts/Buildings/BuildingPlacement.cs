@@ -5,6 +5,7 @@ public class BuildingPlacement : MonoBehaviour {
 
     private PlaceableBuildings placeableBuilding;
     private PlaceableBuildings placeableBuildingOld;
+    private BuildingManager buildingManager;
     private Transform currentBuilding;
     private bool hasPlaced;
 
@@ -25,7 +26,8 @@ public class BuildingPlacement : MonoBehaviour {
                 if (IsLegalPosition())
                 {
                     hasPlaced = true;
-                    placeableBuilding.isPlaced = true;
+                    buildingManager.baumenüActive = true;  
+                    placeableBuilding.isPlaced = true;               
                 }
             }
         }
