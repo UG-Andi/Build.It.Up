@@ -19,7 +19,7 @@ public class BuildingPlacement : MonoBehaviour {
 
         if (currentBuilding != null && !hasPlaced)
         {
-            currentBuilding.position = new Vector3(Mathf.Round(p.x / 1.2f) * 1.2f, 0, Mathf.Round(p.z / 1.2f) * 1.2f);
+            currentBuilding.position = new Vector3(Mathf.Round(p.x / 1) * 1, 0, Mathf.Round(p.z / 0.4f) * 0.4f);
 
             if (Input.GetMouseButtonDown(0))
             {
