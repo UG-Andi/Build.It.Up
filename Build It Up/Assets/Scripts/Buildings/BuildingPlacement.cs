@@ -7,9 +7,15 @@ public class BuildingPlacement : MonoBehaviour {
     private PlaceableBuildings placeableBuildingOld;
     private BuildingManager buildingManager;
     private Transform currentBuilding;
-    private bool hasPlaced;
+    public bool hasPlaced;
+    public float fieldQuotient;
 
     public LayerMask buildingsMask;
+
+    void Start ()
+    {
+        hasPlaced = true;
+    }
 
 	void Update ()
     {
@@ -19,14 +25,13 @@ public class BuildingPlacement : MonoBehaviour {
 
         if (currentBuilding != null && !hasPlaced)
         {
-            currentBuilding.position = new Vector3(Mathf.Round(p.x / 1) * 1, 0, Mathf.Round(p.z / 0.4f) * 0.4f);
+            currentBuilding.position = new Vector3(Mathf.Round(p.x / fieldQuotient) * fieldQuotient, 0, Mathf.Round(p.z / fieldQuotient) * fieldQuotient);
 
             if (Input.GetMouseButtonDown(0))
             {
                 if (IsLegalPosition())
                 {
                     hasPlaced = true;
-                    buildingManager.baumenüActive = true;  
                     placeableBuilding.isPlaced = true;               
                 }
             }

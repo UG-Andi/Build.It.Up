@@ -25,13 +25,12 @@ public class BuildingManager : MonoBehaviour {
         BaubuttonsIndustrie = GameObject.Find("BaubuttonsIndustrie");
         BaubuttonsIndustrie.SetActive(false);
         Baumenübutton = GameObject.Find("Baumenü");
-        baumenüActive = true;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (baumenüActive == true)
+        if (buildingPlacement.hasPlaced == true)
         {
             Baumenübutton.SetActive(true);
         }
