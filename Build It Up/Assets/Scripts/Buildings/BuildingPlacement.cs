@@ -12,9 +12,15 @@ public class BuildingPlacement : MonoBehaviour {
 
     public LayerMask buildingsMask;
 
+<<<<<<< HEAD
     void Start ()
     {
         hasPlaced = true;
+=======
+    void Start()
+    {
+        buildingManager = GetComponent<BuildingManager>();
+>>>>>>> origin/master
     }
 
 	void Update ()
