@@ -11,6 +11,11 @@ public class BuildingPlacement : MonoBehaviour {
 
     public LayerMask buildingsMask;
 
+    void Start()
+    {
+        buildingManager = GetComponent<BuildingManager>();
+    }
+
 	void Update ()
     {
         Vector3 m = Input.mousePosition;
