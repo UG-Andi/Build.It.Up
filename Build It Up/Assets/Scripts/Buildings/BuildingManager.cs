@@ -24,7 +24,7 @@ public class BuildingManager : MonoBehaviour {
         BaubuttonsGewerbe.SetActive(false);
         BaubuttonsIndustrie = GameObject.Find("BaubuttonsIndustrie");
         BaubuttonsIndustrie.SetActive(false);
-        Baumenübutton = GameObject.Find("Baumenü");
+        Baumenübutton = GameObject.Find("BuildMenu");
 	}
 	
 	// Update is called once per frame
