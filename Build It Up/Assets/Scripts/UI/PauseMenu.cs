@@ -1,42 +1,53 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PauseMenu : MonoBehaviour {
 
-    GameObject pauseMenuPanel;
+    GameObject endPauseButton;
     GameObject buildMenu;
-    GameObject pauseMenu;
-    private float camScaleX;
-    private float camScaleY;
+    GameObject pauseButton;
+    private bool pause;
+    GameObject canvas;
 
     // Use this for initialization
     void Start ()
     {
-        pauseMenuPanel = GameObject.Find("PausePanel");
+        endPauseButton = GameObject.Find("EndPauseButton");
         buildMenu = GameObject.Find("BuildMenu");
-        pauseMenuPanel.SetActive(false);
-        pauseMenu = GameObject.Find("PauseButton");
+        endPauseButton.SetActive(false);
+        pauseButton = GameObject.Find("PauseButton");
+        canvas = GameObject.Find("Ingame_Canvas");
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-
+        if (pause == true)
+        {
+            endPauseButton.SetActive(true);
+            pauseButton.SetActive(false);
+            buildMenu.SetActive(false);
+            Time.timeScale = 0;
+            canvas.GetComponent<RawImage>().enabled = true;
+        }
+        else
+        {
+            endPauseButton.SetActive(false);
+            pauseButton.SetActive(true);
+            buildMenu.SetActive(true);
+            Time.timeScale = 1;
+            canvas.GetComponent<RawImage>().enabled = false;
+        }
     }
 
     public void Pause ()
     {
-        pauseMenuPanel.SetActive(true);
-        buildMenu.SetActive(false);
-        pauseMenu.SetActive(false);
-        Time.timeScale = 0;
+        pause = true;        
     }
 
     public void EndPause ()
     {
-        pauseMenuPanel.SetActive(false);
-        buildMenu.SetActive(true);
-        pauseMenu.SetActive(true);
-        Time.timeScale = 1;
+        pause = false;
     }
 }
