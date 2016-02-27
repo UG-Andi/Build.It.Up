@@ -5,6 +5,7 @@ public class BuildingPlacement : MonoBehaviour {
 
     private PlaceableBuildings placeableBuilding;
     private PlaceableBuildings placeableBuildingOld;
+    private GameObject placedObject;
     private BuildingManager buildingManager;
     private Transform currentBuilding;
     public bool hasPlaced;
@@ -12,13 +13,18 @@ public class BuildingPlacement : MonoBehaviour {
 
     public LayerMask buildingsMask;
 
-//<<<<<<< HEAD
-//=======
+    private int number;
+    private int Wohnwagen;
+    private int Wohnhaus;
+    private int Store;
+
     void Start()
     {
         buildingManager = GetComponent<BuildingManager>();
         hasPlaced = true;
-//>>>>>>> origin/master
+        Wohnwagen = 1;
+        Wohnhaus = 1;
+        Store = 1;
     }
 
 	void Update ()
@@ -35,8 +41,11 @@ public class BuildingPlacement : MonoBehaviour {
             {
                 if (IsLegalPosition())
                 {
+                    placedObject = currentBuilding.gameObject;
                     hasPlaced = true;
-                    placeableBuilding.isPlaced = true;               
+                    placeableBuilding.isPlaced = true;
+                    buildingManager.baumenüActive = true;
+                    RenameObject();        
                 }
             }
         }
@@ -82,5 +91,26 @@ public class BuildingPlacement : MonoBehaviour {
         hasPlaced = false;
         currentBuilding = ((GameObject)Instantiate(b)).transform;
         placeableBuilding = currentBuilding.GetComponent<PlaceableBuildings>();
+    }
+
+    void RenameObject ()
+    {
+        switch (buildingManager.buttonIndex)
+        {
+            case 1: number = Wohnwagen;
+                    Wohnwagen++;
+                break;
+
+            case 2: number = Wohnhaus;
+                    Wohnhaus++;
+                break;
+
+            case 101: number = Store;
+                      Store++;
+                break;
+        }
+
+        string numberOfTypeOfBuilding = number.ToString();
+        placedObject.name = placedObject.name.Replace("(Clone)", " " + numberOfTypeOfBuilding);
     }
 }
